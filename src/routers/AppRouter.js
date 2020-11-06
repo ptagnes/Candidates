@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CandidateDashboardPage from '../components/CandidateDashboardPage';
 import AddCandidatePage from '../components/AddCandidatePage';
-import EditCandidatePage from '../components/AddCandidatePage';
+import EditCandidatePage from '../components/EditCandidatePage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';

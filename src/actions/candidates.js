@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid';
-const id = uuid()
+// import { v4 as uuid } from 'uuid';
+// const id = uuid()
 
 // Namn
 // Ålder
@@ -19,7 +19,7 @@ export const addCandidate = (
 ) => ({
   type: 'ADD_CANDIDATE',
   candidate: {
-    id: id,
+    id: 'id'+Math.random(),
     description,
     note,
     age,

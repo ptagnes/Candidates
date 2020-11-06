@@ -62,6 +62,7 @@ export default class CandidateForm extends React.Component {
     }
   };
   render() {
+    console.log(this.state)
     return (
       <div>
         <form className="form" onSubmit={this.onSubmit}>
@@ -99,7 +100,7 @@ export default class CandidateForm extends React.Component {
           /> 
           <input
             type="text"
-            placeholder="Aktuellt rekryteringssteg"
+            placeholder="Aktuellt rekryteringssteg, fas1: intervju, fas2: teknik, fas3: erbjudande"
             className="text-input"
             value={this.state.status}
             onChange={this.onStatusChange}

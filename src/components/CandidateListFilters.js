@@ -5,7 +5,6 @@ import {
 } from "../actions/filters";
 
 class CandidateListFilters extends React.Component {
-
   render() {
     return (
       <div className="content-container">

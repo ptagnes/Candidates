@@ -1,11 +1,16 @@
-import moment from 'moment';
-
 export default (candidates, { text }) => {
-  return candidates.filter((candidate) => {
-    const textMatch = candidate.description.toLowerCase().includes(text.toLowerCase());
-
+  const storedCandidates = JSON.parse(localStorage.getItem('candidates'));
+  const allCandidates = storedCandidates
+    ? storedCandidates
+    : candidates;
+  const filteredCandidates = allCandidates.filter((candidate) => {
+    const textMatch = candidate.description
+      .toLowerCase()
+      .includes(text.toLowerCase());
     return textMatch;
-  })
+  });
+  localStorage.setItem("filteredCandidates", JSON.stringify(filteredCandidates));
+  return filteredCandidates;
 };
 
 /**
