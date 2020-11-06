@@ -40,7 +40,7 @@ const store = configureStore();
     
 const state = store.getState();
 const visibleCandidates = getVisibleCandidates(state.candidates, state.filters);
-console.log('visibleCandidates');
+console.log('Candidates from state:');
 console.log(visibleCandidates);
 
 function App() {

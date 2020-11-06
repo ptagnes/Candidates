@@ -12,17 +12,24 @@ function RemoveFromLocalStorage(idToRemove) {
   const remainingLS = data.filter(({ id }) => id !== idToRemove);
   localStorage.setItem("candidates", JSON.stringify(remainingLS));
 }
-function UpdateLocalStorage(newData) {
-  console.log("updating local storage");
-  console.log(newData);
-  // console.log(data);
+function EditCandidate(data, aId, updates) {
+  return data.map((candidate) => {
+    if (candidate.id === aId) {
+      return {
+        ...candidate,
+        ...updates,
+      };
+    } else {
+      return candidate;
+    }
+  });
 }
 
 export default (state = candidatesReducerDefaultState, action) => {
   switch (action.type) {
     case "ADD_CANDIDATE":
-      SaveDataToLocalStorage(action.candidate); //serves as the 'backend' for this demo application
-      return [...state, action.candidate]; // save to state for demo purposes
+      SaveDataToLocalStorage(action.candidate); //LocalStorage serves as the 'backend' for this demo application
+      return [...state, action.candidate]; // save to state for demo purposes (LocalStorage is used for data management for the poc)
 
     case "REMOVE_CANDIDATE":
       const newState = state.filter(({ id }) => id !== action.id);
@@ -30,21 +37,11 @@ export default (state = candidatesReducerDefaultState, action) => {
       return newState; //data is saved in localstorage and rendered to listcomponent from LS
 
     case "EDIT_CANDIDATE":
-      console.log("EDIT_CANDIDATE from reducer");
-      console.log(action.updates);
-      
-      return state.map((candidate) => {
-        if (candidate.id === action.id) {
-          UpdateLocalStorage(action.updates);
-          
-          return {
-            ...candidate,
-            ...action.updates,
-          };
-        } else {
-          return candidate;
-        }
-      });
+      var data = localStorage.getItem("candidates");
+      data = data ? JSON.parse(data) : [];
+      const editedData = EditCandidate(data, action.id, action.updates);
+      localStorage.setItem("candidates", JSON.stringify(editedData));
+      return editedData;
     default:
       return state;
   }

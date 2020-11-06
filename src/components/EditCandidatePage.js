@@ -5,11 +5,8 @@ import { editCandidate, removeCandidate } from '../actions/candidates';
 
 const EditCandidatePage = (props) => {
   const storedCandidates = JSON.parse(localStorage.getItem('candidates'));
-  console.log('storedCandidates')
-  console.log(storedCandidates)
-  console.log(props.match.params.id)
   const candidate = storedCandidates.find((candidate) => candidate.id === props.match.params.id);
-  console.log(candidate)
+  const cId = candidate.id;
   return (
     <div>
       <div className="page-header">
@@ -19,9 +16,9 @@ const EditCandidatePage = (props) => {
       </div>
       <div className="content-container">
       <CandidateForm
-        candidate={candidate} //props.candidate if we used store state
-        onSubmit={(candidate) => {
-          props.dispatch(editCandidate(candidate.id, candidate));
+        candidate={candidate} //props.candidate if we used store state instead of LocalStorage
+          onSubmit={(candidate) => {
+          props.dispatch(editCandidate(cId, candidate));
           props.history.push('/');
         }}
       />

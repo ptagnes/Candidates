@@ -48,8 +48,6 @@ export default class CandidateForm extends React.Component {
     if (!this.state.description) {
       this.setState(() => ({ error: 'Vänligen ange ett namn.' }));
     } else {
-      console.log('Data submitted: ')
-      console.log(this.state)
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         description: this.state.description,
@@ -62,7 +60,6 @@ export default class CandidateForm extends React.Component {
     }
   };
   render() {
-    console.log(this.state)
     return (
       <div>
         <form className="form" onSubmit={this.onSubmit}>
