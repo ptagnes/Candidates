@@ -15,6 +15,15 @@ export default class CandidateForm extends React.Component {
       error: ''
     };
   }
+  handleOnChange = (e) => {
+    const {
+      target: { name, value },
+    } = e;
+    this.setState((previousValues) => ({
+      ...previousValues,
+      [name]: value,
+    }));
+  }
   onDescriptionChange = (e) => {
     const description = e.target.value;
     this.setState(() => ({ description }));
@@ -60,6 +69,7 @@ export default class CandidateForm extends React.Component {
     }
   };
   render() {
+    console.log(this.state);
     return (
       <div>
         <form className="form" onSubmit={this.onSubmit}>
@@ -70,16 +80,18 @@ export default class CandidateForm extends React.Component {
             type="text"
             placeholder="Namn"
             className="text-input"
+            name="description"
             autoFocus
             value={this.state.description}
-            onChange={this.onDescriptionChange}
+            onChange={this.handleOnChange}
           />
           <input
             type="text"
             placeholder="Ålder"
             className="text-input"
+            name="age"
             value={this.state.age}
-            onChange={this.onAgeChange}
+            onChange={this.handleOnChange}
           />
           <input
             type="text"
